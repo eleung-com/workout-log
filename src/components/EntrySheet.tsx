@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 import { formatLine } from "@/lib/parse";
 import { entryFields, resolveLine } from "@/lib/resolve";
@@ -22,7 +23,7 @@ export default function EntrySheet({ entry, data, onClose, onSave, onDelete }:
   return (
     <div className="scrim" onClick={onClose}>
       <div className="sheet" role="dialog" aria-label="Edit entry" onClick={e => e.stopPropagation()}>
-        <h2>Edit {ex?.name ?? "entry"}</h2>
+        <div className="row between"><h2>Edit {ex?.name ?? "entry"}</h2>{ex && <Link className="linkbtn" href={`/progress/?ex=${encodeURIComponent(ex.id)}`}>Chart &amp; PRs</Link>}</div>
         <div className="field">
           <input aria-label="Entry" value={text} onChange={e => setText(e.target.value)} autoFocus autoComplete="off" autoCorrect="off" autoCapitalize="none" spellCheck={false}
             onKeyDown={e => { if (e.key === "Enter") save(); }} />

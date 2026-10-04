@@ -1,10 +1,3 @@
-import Nav from "@/components/Nav";
-export default function Page() {
-  return (
-    <main className="screen">
-      <p className="h-greet">History</p>
-      <p className="empty">Coming in build step 4.</p>
-      <Nav />
-    </main>
-  );
-}
+import { Suspense } from "react";
+import HistoryScreen from "@/components/HistoryScreen";
+export default function Page() { return <Suspense><HistoryScreen /></Suspense>; }

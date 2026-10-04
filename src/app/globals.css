@@ -110,3 +110,53 @@ button { cursor: pointer; }
   background: var(--pill); color: var(--pill-fg); border-radius: 16px; padding: 10px 10px 10px 16px; display: flex; gap: 14px; align-items: center; font-size: 14px; width: max-content; max-width: calc(100% - 32px); }
 .toast button { background: none; border: 0; color: var(--mint); font-weight: 700; padding: 6px 8px; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* exercise view */
+.title-c { flex: 1; display: flex; gap: 8px; justify-content: center; align-items: center; font-size: 16px; }
+a.iconbtn { color: var(--ink); }
+.iconbtn.sm { width: 34px; height: 34px; border-radius: 12px; background: var(--phone); }
+.iconbtn:disabled { opacity: .3; cursor: default; }
+.statbar { background: var(--card); border-radius: 22px; display: grid; grid-template-columns: repeat(3, 1fr); padding: 14px 4px; }
+.statbar div { padding: 0 12px; display: grid; gap: 2px; min-width: 0; }
+.statbar div + div { border-left: 1px solid var(--hair); }
+.statbar small { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.statbar strong { font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
+.statbar strong em { font-style: normal; font-size: 11px; font-weight: 500; color: var(--muted); margin-left: 2px; }
+.chart { background: var(--card); border-radius: 24px; padding: 16px 14px 10px; }
+.chart .head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; gap: 8px; }
+.chartscroll { overflow-x: auto; scrollbar-width: none; }
+.chartscroll::-webkit-scrollbar { display: none; }
+.chartscroll svg { display: block; }
+.stat { background: var(--card); border-radius: 20px; padding: 13px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.stat .l b { display: block; font-size: 14px; }
+.stat .l span { font-size: 12px; color: var(--muted); }
+.stat .r { text-align: right; }
+.stat .r strong { font-size: 22px; font-weight: 700; display: block; line-height: 1.1; }
+.stat .r span { font-size: 11px; color: var(--muted); }
+
+/* progress list */
+.exgroup { display: grid; gap: 8px; }
+.exlist { background: var(--card); border-radius: 22px; overflow: hidden; }
+.exrow { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 13px 16px; color: var(--ink); text-decoration: none; }
+.exrow + .exrow { border-top: 1px solid var(--hair); }
+.exrow > span:first-child { display: grid; gap: 1px; min-width: 0; }
+.exrow > span:last-child { font-family: var(--f-mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+/* history */
+.cal { background: var(--card); border-radius: 24px; padding: 14px; }
+.cal .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 10px; }
+.cal .grid > * { aspect-ratio: 1; max-width: 100%; border-radius: 10px; display: grid; place-items: center; font-size: 12px; color: var(--muted); text-decoration: none; }
+.cal .grid .h { aspect-ratio: auto; font-size: 10px; font-weight: 700; letter-spacing: .06em; }
+.cal .grid .l1 { background: var(--mint-soft); color: var(--ink); }
+.cal .grid .l2 { background: var(--mint); color: var(--ink); font-weight: 700; }
+.cal .grid .today { outline: 2px solid var(--ink); outline-offset: -2px; }
+.legend { display: flex; gap: 12px; font-size: 11px; color: var(--muted); margin-top: 10px; align-items: center; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 4px; vertical-align: -1px; }
+.legend i.l1 { background: var(--mint-soft); } .legend i.l2 { background: var(--mint); }
+.legend .sub { margin-left: auto; font-size: 11px; }
+.sess { background: var(--card); border-radius: 22px; padding: 14px 16px; display: grid; gap: 10px; color: var(--ink); text-decoration: none; }
+.sess table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.sess td { padding: 6px 0; border-top: 1px solid var(--hair); vertical-align: top; }
+.sess td:last-child { text-align: right; font-family: var(--f-mono); font-size: 12px; white-space: nowrap; padding-left: 8px; }
+.sess a { color: var(--ink); }
+.badge.pr { background: var(--mint); color: var(--ink); }

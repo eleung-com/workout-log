@@ -39,5 +39,5 @@ Load backup > pick `import/lift-log-backup.json` (AirDrop it to Files first).
 1. Notes import: done (`import/`)
 2. Log screen: done
 3. Install to home screen + offline: done
-4. History and Progress tabs, charts, PRs
+4. History and Progress tabs, charts, PRs: done
 5. Backup reminder, exercise merge screen

@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { isPR } from "@/lib/progress";
 import { addAlias, addEntries, createExercise, deleteEntry, requestPersistence, restoreEntry, updateEntry } from "@/lib/db";
 import { longDate, relDays, shortDate, todayIso, weekOf, fromIso } from "@/lib/dates";
 import { splitLines } from "@/lib/parse";
@@ -15,7 +17,8 @@ import Nav from "./Nav";
 export default function LogScreen() {
   const data = useData();
   const today = todayIso();
-  const [date, setDate] = useState(today);
+  const params = useSearchParams();
+  const [date, setDate] = useState(() => { const d = params.get("date"); return d && /^\d{4}-\d{2}-\d{2}$/.test(d) && d <= today ? d : today; });
   const [text, setText] = useState("");
   const [picks, setPicks] = useState<Record<number, Pick>>({});
   const [editing, setEditing] = useState<Entry | null>(null);
@@ -102,9 +105,13 @@ export default function LogScreen() {
         <div className="entries">
           {todays.map(e => {
             const ex = data.exById.get(e.exerciseId);
+            const earlier = ex ? data.historyBefore(ex.id, date) : [];
+            const pr = ex && isPR(e, ex, earlier);
+            const streak = !pr && lastTime([e, ...earlier])?.streak;
             return (
               <button key={e.id} className="entry" onClick={() => setEditing(e)}>
-                <span className="n">{ex?.name ?? "Unknown"}{e.variant && <span className="sub"> · {e.variant}</span>}</span>
+                <span className="n">{ex?.name ?? "Unknown"}{e.variant && <span className="sub"> · {e.variant}</span>}
+                  {pr ? <span className="badge pr">PR</span> : streak && streak > 1 ? <span className="badge">{streak} in a row</span> : null}</span>
                 <span className="s">{setsLabel(e) || "—"}{e.note && ` · ${e.note}`}</span>
                 <span className="w num">{weightLabel(e, ex) || "—"}</span>
               </button>
