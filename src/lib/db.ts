@@ -79,3 +79,25 @@ export async function restoreBackup(b: Backup): Promise<{ sessions: number; entr
   });
   return { sessions: b.sessions.length, entries: b.entries.length };
 }
+
+export const updateExercise = (id: string, patch: Partial<Exercise>) => db.exercises.update(id, patch);
+
+/** Move every entry from one exercise to another, keep its names as alternate spellings, remove the old one. */
+export async function mergeExercises(fromId: string, toId: string): Promise<number> {
+  if (fromId === toId) return 0;
+  return db.transaction("rw", db.exercises, db.entries, async () => {
+    const [from, to] = await Promise.all([db.exercises.get(fromId), db.exercises.get(toId)]);
+    if (!from || !to) throw new Error("Exercise not found");
+    const moved = await db.entries.where("exerciseId").equals(fromId).modify({ exerciseId: toId });
+    const names = [from.name, ...from.aliases].map(a => a.toLowerCase()).filter(a => a !== to.name.toLowerCase());
+    await db.exercises.update(toId, { aliases: [...new Set([...to.aliases, ...names])] });
+    await db.exercises.delete(fromId);
+    return moved;
+  });
+}
+
+/** Days since the last saved backup, or null if never. */
+export async function daysSinceBackup(): Promise<number | null> {
+  const m = await db.meta.get("lastBackup");
+  return m?.value ? Math.floor((Date.now() - (m.value as number)) / 864e5) : null;
+}

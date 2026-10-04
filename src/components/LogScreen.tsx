@@ -11,6 +11,7 @@ import { GROUPS, type Entry } from "@/lib/types";
 import { useData } from "@/lib/useData";
 import { BackupIcon } from "./Icons";
 import BackupSheet from "./BackupSheet";
+import BackupReminder from "./BackupReminder";
 import EntrySheet from "./EntrySheet";
 import Nav from "./Nav";
 
@@ -76,6 +77,8 @@ export default function LogScreen() {
         </div>
         <button className="iconbtn" aria-label="Backup and restore" onClick={() => setBackupOpen(true)}><BackupIcon /></button>
       </div>
+
+      <BackupReminder hasData={data.entries.length > 0} onOpen={() => setBackupOpen(true)} />
 
       <div className="week" role="group" aria-label="This week">
         {week.map(d => (

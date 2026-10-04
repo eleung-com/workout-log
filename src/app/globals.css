@@ -48,7 +48,7 @@ button { cursor: pointer; }
 .day i { width: 5px; height: 5px; border-radius: 50%; background: transparent; }
 .day.done i { background: var(--mint-ink); }
 .day.on { background: var(--card); color: var(--ink); font-weight: 700; box-shadow: 0 6px 16px -10px rgba(0,0,0,.35); }
-.day.on i { background: var(--ink); }
+.day.on.done i { background: var(--ink); }
 
 /* log field */
 .loglabel { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--mint-ink); margin: 0 0 8px 4px; display: block; }
@@ -160,3 +160,12 @@ a.iconbtn { color: var(--ink); }
 .sess td:last-child { text-align: right; font-family: var(--f-mono); font-size: 12px; white-space: nowrap; padding-left: 8px; }
 .sess a { color: var(--ink); }
 .badge.pr { background: var(--mint); color: var(--ink); }
+
+/* backup reminder + merge */
+.reminder { background: var(--warn-bg); color: var(--warn-ink); border-radius: 20px; padding: 14px; display: grid; gap: 10px; }
+.reminder b { display: block; font-size: 15px; }
+.reminder span { font-size: 13px; }
+.reminder .btn { height: 40px; }
+.mergelist { max-height: 40vh; overflow-y: auto; border: 1px solid var(--hair); }
+button.exrow { width: 100%; background: none; border: 0; text-align: left; }
+.sheet .field { box-shadow: none; }

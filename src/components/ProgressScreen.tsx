@@ -14,6 +14,7 @@ export default function ProgressScreen() {
   const data = useData();
   const exId = useSearchParams().get("ex");
   const ex = exId ? data.exById.get(exId) : undefined;
+  if (exId && !ex && !data.loaded) return null;
   if (ex) return <main className="screen"><ExerciseView ex={ex} data={data} backHref="/progress/" /><Nav /></main>;
 
   const latest = new Map<string, { date: string; label: string; n: number }>();
