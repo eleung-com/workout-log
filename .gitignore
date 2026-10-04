@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+
+# Personal workout data stays on this Mac, never in the public repo
+import/notes.txt
+import/lift-log-backup.json
+import/sessions.csv
+import/review.md
+import/build_backup.py
