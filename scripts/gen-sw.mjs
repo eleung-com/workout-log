@@ -10,7 +10,7 @@ const files = [];
   for (const f of readdirSync(dir)) {
     const p = join(dir, f);
     if (statSync(p).isDirectory()) walk(p);
-    else if (!/\.(map|txt)$/.test(f) && f !== "sw.js" && f !== ".nojekyll") files.push(relative(OUT, p).split("\\").join("/"));
+    else if (!/\.map$/.test(f) && f !== "sw.js" && f !== ".nojekyll") files.push(relative(OUT, p).split("\\").join("/"));
   }
 })(OUT);
 const hash = createHash("sha1");
